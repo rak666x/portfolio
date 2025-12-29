@@ -8,84 +8,162 @@
   <meta name="description" content="Projects and case studies by Layne Fester." />
   <style>
     html, body { margin:0; padding:0; }
-    body {
-      min-height:100vh; display:flex; flex-direction:column;
+    html { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: inherit; }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
       font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
-      background:#f5fbff; color:#0f172a;
+      background:#f5fbff;
+      color:#0f172a;
     }
-    main { flex:1; }
-    a { text-decoration:none; }
-    .site-header {
-      background:#fff; border-bottom:1px solid #e2e8f0;
-      padding:14px 24px; display:flex; align-items:center; justify-content:space-between;
-      position:sticky; top:0; z-index:20;
+    main{ flex:1; }
+    a{ text-decoration:none; }
+
+    /* Header / nav */
+    .site-header{
+      background:#fff;
+      border-bottom:1px solid #e2e8f0;
+      padding:14px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      position:sticky;
+      top:0;
+      z-index:20;
     }
-    .site-title { font-size:20px; font-weight:700; color:#1e3a8a; }
-    .site-nav { display:flex; gap:16px; }
-    .nav-link { font-size:14px; font-weight:500; color:#475569; padding-bottom:4px; border-bottom:2px solid transparent; }
-    .nav-link:hover { color:#1e3a8a; }
-    .nav-link.active { color:#1e3a8a; border-bottom-color:#3b82f6; }
-    .site-footer {
-      text-align:center; padding:24px 16px 32px; font-size:13px; color:#64748b;
-      border-top:1px solid #e2e8f0; background:#fff; margin-top:40px;
+    .site-title{ font-size:20px; font-weight:700; color:#1e3a8a; }
+    .site-nav{ display:flex; gap:16px; }
+    .nav-link{
+      font-size:14px;
+      font-weight:500;
+      color:#475569;
+      padding-bottom:4px;
+      border-bottom:2px solid transparent;
+    }
+    .nav-link:hover{ color:#1e3a8a; }
+    .nav-link.active{ color:#1e3a8a; border-bottom-color:#3b82f6; }
+
+    /* Footer */
+    .site-footer{
+      text-align:center;
+      padding:24px 16px 32px;
+      font-size:13px;
+      color:#64748b;
+      border-top:1px solid #e2e8f0;
+      background:#fff;
+      margin-top:40px;
     }
 
-    .wrap { max-width: 980px; margin: 0 auto; padding: 48px 20px; }
-    h1 { margin: 0 0 10px 0; font-size: 34px; color:#1e3a8a; }
-    p { margin: 0 0 22px 0; color:#475569; line-height:1.6; }
+    /* Page */
+    .wrap{ max-width: 980px; margin: 0 auto; padding: 48px 20px; }
+    h1{ margin:0 0 10px 0; font-size:34px; color:#1e3a8a; }
+    p{ margin:0 0 22px 0; color:#475569; line-height:1.6; }
 
-    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px; }
-    .card {
-      background:#fff; border:1px solid #e2e8f0; border-radius:12px;
-      padding:18px; box-shadow: 0 4px 14px rgba(30,58,138,0.06);
+    /* Cards */
+    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px; }
+    .card{
+      background:#fff;
+      border:1px solid #e2e8f0;
+      border-radius:14px;
+      padding:18px;
+      box-shadow: 0 6px 18px rgba(30,58,138,0.07);
+      transition: transform 180ms ease, box-shadow 180ms ease;
     }
-    .card h2 { margin:0 0 8px 0; font-size:18px; color:#1e40af; }
-    .meta { font-size:13px; color:#64748b; margin-bottom:10px; }
-    .card p { margin:0 0 14px 0; font-size:14px; color:#475569; }
-    .btn {
-      display:inline-block; padding:10px 14px; border-radius:8px;
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(30,58,138,0.12);
+    }
+    .card h2{ margin:0 0 8px 0; font-size:18px; color:#1e40af; }
+    .meta{ font-size:13px; color:#64748b; margin-bottom:10px; }
+    .card p{ margin:0 0 12px 0; font-size:14px; color:#475569; }
+
+    .tags{ display:flex; flex-wrap:wrap; gap:8px; margin: 0 0 14px 0; }
+    .tag{
+      font-size:12px;
+      color:#1e40af;
+      padding:4px 10px;
+      border-radius:999px;
+      background:#eef2ff;
+      border:1px solid #e2e8f0;
+    }
+
+    .btn-row{ display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:10px;
       background: linear-gradient(135deg,#1e3a8a,#3b82f6);
-      color:#fff; font-weight:600; font-size:14px;
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
     }
-	/* Mobile nav: single line, no wrap, no visible scrollbar */
-	@media (max-width: 520px) {
-	  .site-header {
-		padding: 12px 14px;
-		flex-direction: row;         /* keep one line */
-		align-items: center;
-		gap: 12px;
-	  }
+    .btn.secondary{ background:#fff; color:#1e40af; border:1px solid #cbd5e1; }
+    .btn.secondary:hover{ border-color:#3b82f6; }
 
-	  .site-title {
-		font-size: 16px;
-		flex: 0 0 auto;
-	  }
+    /* Featured */
+    .featured-wrap{ margin-bottom:16px; }
+    .card.featured{
+      position: relative;
+      border-left: 4px solid #3b82f6;
+      padding-left: 16px;
+    }
+    .featured-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:8px;
+    }
+    .badge{
+      display:inline-block;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.02em;
+      color:#1e40af;
+      background:#eff6ff;
+      border:1px solid #dbeafe;
+      padding:4px 10px;
+      border-radius:999px;
+      margin-bottom:10px;
+    }
+    .icon{
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid #dbeafe;
+      background:#eff6ff;
+      font-size:22px;
+      flex: 0 0 auto;
+    }
 
-	  .site-nav {
-		flex: 1;
-		display: flex;
-		justify-content: flex-end;
-		gap: 12px;
+    /* Mobile nav: single line, no wrap, no visible scrollbar */
+    @media (max-width: 520px) {
+      .site-header{ padding: 12px 14px; flex-direction: row; align-items: center; gap: 12px; }
+      .site-title{ font-size: 16px; flex: 0 0 auto; }
+      .site-nav{
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .site-nav::-webkit-scrollbar{ display:none; }
+      .nav-link{ font-size:13px; padding-bottom:2px; flex: 0 0 auto; }
+    }
 
-		flex-wrap: nowrap;           /* no wrapping */
-		overflow-x: auto;            /* allows swipe if needed */
-		white-space: nowrap;
-		-webkit-overflow-scrolling: touch;
-
-		scrollbar-width: none;       /* Firefox hide scrollbar */
-	  }
-
-	  .site-nav::-webkit-scrollbar {
-		display: none;               /* Chrome/Safari hide scrollbar */
-	  }
-
-	  .nav-link {
-		font-size: 13px;
-		padding-bottom: 2px;
-		flex: 0 0 auto;
-	  }
-	}
-
+    @media (max-width: 640px){
+      .featured-head{ align-items:center; }
+    }
   </style>
 </head>
 <body>
@@ -102,18 +180,42 @@
   <main>
     <div class="wrap">
       <h1>Projects</h1>
-      <p>Code projects and real-world security work.</p>
+      <p>A mix of projects and security work, with short write-ups and takeaways.</p>
+
+      <div class="featured-wrap">
+        <div class="card featured">
+          <div class="featured-head">
+            <div>
+              <h2>MarketViewerPro</h2>
+              <div class="meta">Stock dashboard: indicators, signals, and news sentiment • FastAPI + React/Vite</div>
+            </div>
+          </div>
+
+          <p>
+            End-to-end MVP that pulls OHLCV data, calculates indicators (SMA/EMA/RSI), generates conservative next‑day signals,
+            and shows ticker‑filtered news with sentiment.
+          </p>
+
+          <div class="tags">
+            <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Vite</span><span class="tag">yfinance</span><span class="tag">Recharts</span><span class="tag">Docker</span>
+          </div>
+
+          <div class="btn-row">
+            <a class="btn" href="marketviewerpro.html">Read the case study</a>
+            <a class="btn secondary" href="https://github.com/rak-dev0/MarketViewerPro" target="_blank" rel="noopener noreferrer">GitHub repo</a>
+          </div>
+        </div>
+      </div>
 
       <div class="grid">
         <div class="card">
           <h2>Security Camera + NAS Setup (Small Business)</h2>
           <div class="meta">Physical security + ransomware-aware backups</div>
           <p>Installed 4 cameras + DVR, set up a switch, and configured a NAS for scheduled backups with access limits.</p>
-          <a class="btn" href="camera-nas.html">Read the write-up</a>
+          <div class="btn-row">
+            <a class="btn" href="camera-nas.html">Read the write-up</a>
+          </div>
         </div>
-
-        <!-- Add 1–3 more cards -->
-
       </div>
     </div>
   </main>
